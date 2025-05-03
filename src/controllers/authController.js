@@ -49,7 +49,12 @@ const login = async (req, res) => {
       { expiresIn: '24h' }
     );
 
-    res.json({ token });
+    // Modificamos la respuesta para incluir el rol del usuario
+    res.json({ 
+      token,
+      role: user.role,
+      userId: user.id
+    });
   } catch (error) {
     res.status(500).json({ error: 'Error en el servidor' });
   }
